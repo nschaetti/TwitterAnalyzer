@@ -22,4 +22,38 @@
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+# Imports
+import logging
+import argparse
+from twitter.TwitterConnector import TwitterConnector
 
+
+####################################################
+# Main function
+####################################################
+
+if __name__ == "__main__":
+
+    # Argument parser
+    parser = argparse.ArgumentParser(description="TwitterAnalyzer - Track a retweet")
+
+    # Argument
+    parser.add_argument("--auth-token1", type=str, help="First authentification token", required=True)
+    parser.add_argument("--auth-token2", type=str, help="Second authentification token", required=True)
+    parser.add_argument("--access-token1", type=str, help="First access token", required=True)
+    parser.add_argument("--access-token2", type=str, help="Second access token", required=True)
+    parser.add_argument("--retweet-id", type=str, help="Retweet ID to track", required=True)
+    parser.add_argument("--log-level", type=int, help="Log level", default=20)
+    args = parser.parse_args()
+
+    # Logging
+    logging.basicConfig(level=args.log_level)
+    logger = logging.getLogger(name="TwitterAnalyzer")
+
+    # Connection to Twitter
+    twitter_connector = TwitterConnector(args.auth_token1, args.auth_token2, args.access_token1, args.access_token2)
+
+    # Get tweets from the hashtag
+
+
+# end if
